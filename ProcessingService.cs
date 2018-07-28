@@ -51,6 +51,11 @@ namespace TalegenProjectNamiCacheLoader
         private readonly bool runInParallel;
 
         /// <summary>
+        /// Contains the request timeout in seconds.
+        /// </summary>
+        private readonly int requestTimeout;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="ProcessingService"/> class.
         /// </summary>
         /// <param name="logTextWriter">Contains a <see cref="TextWriter"/> for writing logging output.</param>
@@ -58,7 +63,8 @@ namespace TalegenProjectNamiCacheLoader
         /// <param name="maxDepth">Contains the maximum indexing depth per site.</param>
         /// <param name="runInParallel">Contains a value indicating whether page retrieval loops should run in multi-threaded mode.</param>
         /// <param name="bypassKey">Contains a bypass key value for the client agent string.</param>
-        public ProcessingService(TextWriter logTextWriter, int maxParallelismCount = 10, int maxDepth = 10, bool runInParallel = true, string bypassKey = "")
+        /// <param name="requestTimeout">Contains an optional request timeout in seconds.</param>
+        public ProcessingService(TextWriter logTextWriter, int maxParallelismCount = 10, int maxDepth = 10, bool runInParallel = true, string bypassKey = "", int requestTimeout = 100)
         {
             this.logWriter = logTextWriter ?? Console.Out;
             this.maxParallelismCount = maxParallelismCount;
@@ -66,6 +72,7 @@ namespace TalegenProjectNamiCacheLoader
             this.maxDepth = maxDepth;
             this.visitedLinks = new ConcurrentBag<string>();
             this.bypassKey = !string.IsNullOrWhiteSpace(bypassKey) ? bypassKey : TypeExtensions.RandomAlphaString(10);
+            this.requestTimeout = requestTimeout;
         }
 
         /// <summary>
@@ -223,6 +230,9 @@ namespace TalegenProjectNamiCacheLoader
             {
                 if (WebRequest.Create(siteUri) is HttpWebRequest request)
                 {
+                    // set timeout in miliseconds
+                    request.Timeout = this.requestTimeout * 1000;
+                    
                     // Add the BypassKey found in App Settings to the User Agent, so we can notify the Blob Cache Front End to always let us through
                     request.UserAgent += " " + this.bypassKey;
                     result = request.GetResponse();

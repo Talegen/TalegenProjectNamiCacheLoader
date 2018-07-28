@@ -30,7 +30,7 @@ namespace TalegenProjectNamiCacheLoader
             var siteList = System.Configuration.ConfigurationManager.AppSettings["ProjectNamiCacheLoader.SiteList"].ConvertToString().Split(',').ToList();
             bool runInParallel = System.Configuration.ConfigurationManager.AppSettings["ProjectNamiCacheLoader.Parallel"].ToBoolean(true);
             string bypassKey = System.Configuration.ConfigurationManager.AppSettings["ProjectNamiBlobCache.BypassKey"].ConvertToString(); 
-
+            int requestTimeout = System.Configuration.ConfigurationManager.AppSettings["ProjectNamiCacheLoader.RequestTimeout"].ToInt(200);
             ThreadPool.GetMinThreads(out int minimumThreads, out int minimumPortThreads);
             
             if (runInParallel)
@@ -55,7 +55,7 @@ namespace TalegenProjectNamiCacheLoader
                         }
 
                         Console.WriteLine(Resources.ProcessingSiteStartText, siteToProcess);
-                        ProcessingService processingService = new ProcessingService(Console.Out, minimumThreads * 2, maxDepth, runInParallel, bypassKey);
+                        ProcessingService processingService = new ProcessingService(Console.Out, minimumThreads * 2, maxDepth, runInParallel, bypassKey, requestTimeout);
                         processingService.ProcessSite(siteToProcess);
                         Console.WriteLine(Resources.ProcessingSiteEndText, siteToProcess);
                     });
@@ -72,7 +72,7 @@ namespace TalegenProjectNamiCacheLoader
                     }
 
                     Console.WriteLine(Resources.ProcessingSiteStartText, siteToProcess);
-                    ProcessingService processingService = new ProcessingService(Console.Out, minimumThreads * 2, maxDepth, runInParallel, bypassKey);
+                    ProcessingService processingService = new ProcessingService(Console.Out, minimumThreads * 2, maxDepth, runInParallel, bypassKey, requestTimeout);
                     processingService.ProcessSite(siteToProcess);
                     Console.WriteLine(Resources.ProcessingSiteEndText, siteToProcess);
                 }
