@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="PageGetResponseExceptionErrorMessageText" xml:space="preserve">
+    <value>Fehler - Fehler während der Get Request [{0}]. 
+Ausnahmemeldungen: 
+{1}
+Stack: 
+{2}</value>
+  </data>
+  <data name="PageParseExceptionErrorMessageText" xml:space="preserve">
+    <value>Fehler - Fehler während der Analyse des Inhalts in [{0}]. 
+Ausnahmemeldungen: 
+{1}
+Stack: 
+{2}</value>
+  </data>
+  <data name="PageRequestErrorMessageText" xml:space="preserve">
+    <value>Warnung - versucht auf Anfrage [{0}] und zurückgegebenen Status Code {1} {2}.</value>
+  </data>
+  <data name="PageRequestExceptionErrorMessageText" xml:space="preserve">
+    <value>Fehler - Fehler bei der Verarbeitung von [{0}]. Übersprungen. 
+Ausnahmemeldungen: 
+{1}
+Stack: 
+{2}</value>
+  </data>
+  <data name="PressAnyKeyText" xml:space="preserve">
+    <value>Eine drücken Sie beliebige Taste...</value>
+  </data>
+  <data name="ProcessingInnerLinksText" xml:space="preserve">
+    <value>Verarbeitung von {0} innere Links gefunden in [{1}]...</value>
+  </data>
+  <data name="ProcessingSiteEndText" xml:space="preserve">
+    <value>Bearbeitungsstelle [{0}] abgeschlossen.</value>
+  </data>
+  <data name="ProcessingSiteStartText" xml:space="preserve">
+    <value>Verarbeitung-Website [{0}]-Start...</value>
+  </data>
+  <data name="VisitedSiteResultMessageText" xml:space="preserve">
+    <value>Besucht = {0} in {1:0. ###} Sekunde(n).</value>
+  </data>
+</root>

@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="PageGetResponseExceptionErrorMessageText" xml:space="preserve">
+    <value>Ошибка - произошла ошибка во время получения запроса [{0}]. 
+Исключение сообщений: стек 
+{1}
+: 
+{2}</value>
+  </data>
+  <data name="PageParseExceptionErrorMessageText" xml:space="preserve">
+    <value>Ошибка - Ошибка при разборе содержимого в [{0}]. 
+Исключение сообщений: стек 
+{1}
+: 
+{2}</value>
+  </data>
+  <data name="PageRequestErrorMessageText" xml:space="preserve">
+    <value>Предупреждение - попытка запроса [{0}] и возвращенного состояния кода {1} {2}.</value>
+  </data>
+  <data name="PageRequestExceptionErrorMessageText" xml:space="preserve">
+    <value>Ошибка - произошла ошибка во время обработки [{0}]. Пропущен. 
+Исключение сообщений: стек 
+{1}
+: 
+{2}</value>
+  </data>
+  <data name="PressAnyKeyText" xml:space="preserve">
+    <value>Нажмите любую клавишу...</value>
+  </data>
+  <data name="ProcessingInnerLinksText" xml:space="preserve">
+    <value>Обработка внутренних ссылок {0} найдено в [{1}]...</value>
+  </data>
+  <data name="ProcessingSiteEndText" xml:space="preserve">
+    <value>Переработка сайта [{0}] полный.</value>
+  </data>
+  <data name="ProcessingSiteStartText" xml:space="preserve">
+    <value>Начало сайта [{0}] обработка...</value>
+  </data>
+  <data name="VisitedSiteResultMessageText" xml:space="preserve">
+    <value>Посетил - {0} в {1:0. ###} сек.</value>
+  </data>
+</root>
