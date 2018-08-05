@@ -1,17 +1,13 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="TypeExtensions.cs" company="Vasont Systems">
-//     Copyright (c) 2016 Vasont Systems. All rights reserved.
+// <copyright file="TypeExtensions.cs" company="Talegen, LLC">
+// Free for the world to use.
 // </copyright>
-// <author>Rob Kennedy</author>
 //-----------------------------------------------------------------------
 namespace TalegenProjectNamiCacheLoader
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Globalization;
     using System.Linq;
-    using System.Reflection;
     using System.Security.Cryptography;
 
     /// <summary>

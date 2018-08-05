@@ -31,6 +31,8 @@ namespace TalegenProjectNamiCacheLoader
             bool runInParallel = System.Configuration.ConfigurationManager.AppSettings["ProjectNamiCacheLoader.Parallel"].ToBoolean(true);
             string bypassKey = System.Configuration.ConfigurationManager.AppSettings["ProjectNamiBlobCache.BypassKey"].ConvertToString(); 
             int requestTimeout = System.Configuration.ConfigurationManager.AppSettings["ProjectNamiCacheLoader.RequestTimeout"].ToInt(200);
+            string extensions = System.Configuration.ConfigurationManager.AppSettings["ProjectNamiCacheLoader.TargetExtensions"].ConvertToString();
+            string[] targetExtensions = !string.IsNullOrWhiteSpace(extensions) ? extensions.Split(',') : new[] { ".php", ".aspx", ".asp" };
             ThreadPool.GetMinThreads(out int minimumThreads, out int minimumPortThreads);
             
             if (runInParallel)
@@ -56,7 +58,7 @@ namespace TalegenProjectNamiCacheLoader
 
                         Console.WriteLine(Resources.ProcessingSiteStartText, siteToProcess);
                         ProcessingService processingService = new ProcessingService(Console.Out, minimumThreads * 2, maxDepth, runInParallel, bypassKey, requestTimeout);
-                        processingService.ProcessSite(siteToProcess);
+                        processingService.ProcessSite(siteToProcess, targetExtensions);
                         Console.WriteLine(Resources.ProcessingSiteEndText, siteToProcess);
                     });
             }
@@ -73,7 +75,7 @@ namespace TalegenProjectNamiCacheLoader
 
                     Console.WriteLine(Resources.ProcessingSiteStartText, siteToProcess);
                     ProcessingService processingService = new ProcessingService(Console.Out, minimumThreads * 2, maxDepth, runInParallel, bypassKey, requestTimeout);
-                    processingService.ProcessSite(siteToProcess);
+                    processingService.ProcessSite(siteToProcess, targetExtensions);
                     Console.WriteLine(Resources.ProcessingSiteEndText, siteToProcess);
                 }
             }

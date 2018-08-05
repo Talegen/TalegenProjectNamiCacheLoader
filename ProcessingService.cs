@@ -79,12 +79,22 @@ namespace TalegenProjectNamiCacheLoader
         /// This method is called to process recursively a site and any content that is found.
         /// </summary>
         /// <param name="siteUrl">Contains the site URL to process.</param>
-        /// <param name="currentDepth">Contains the current depth.</param>
+        /// <param name="targetExtensions">Contains an array of allowed target file extensions that start with a . character.</param>
+        /// <param name="currentDepth">Contains an optional recursion depth value.</param>
         /// <returns>Contains a <see cref="Task"/> object.</returns>
-        public bool ProcessSite(string siteUrl, int currentDepth = 0)
+        public bool ProcessSite(string siteUrl, string[] targetExtensions, int currentDepth = 0)
         {
+            if (string.IsNullOrWhiteSpace(siteUrl))
+            {
+                throw new ArgumentNullException(nameof(siteUrl));
+            }
+
+            if (targetExtensions == null)
+            {
+                throw new ArgumentNullException(nameof(targetExtensions));
+            }
+
             // allowed extensions
-            string[] contentExtensions = new[] { ".php", ".htm", ".html", ".aspx", ".js", ".css" };
             bool result = true;
             
             try
@@ -150,7 +160,7 @@ namespace TalegenProjectNamiCacheLoader
                                     // return the query section of the URI
                                     // otherwise, we don't care about this link.
                                     return cleanUri.DnsSafeHost == siteUri.DnsSafeHost &&
-                                        ((string.IsNullOrEmpty(lastSegmentFileName) || !lastSegmentFileName.Contains(".")) || contentExtensions.Contains(Path.GetExtension(lastSegmentFileName)))
+                                        ((string.IsNullOrEmpty(lastSegmentFileName) || !lastSegmentFileName.Contains(".")) || targetExtensions.Contains(Path.GetExtension(lastSegmentFileName)))
                                         ? cleanUri.GetLeftPart(UriPartial.Query) : string.Empty;
                                 })
                                 .Where(link => link != string.Empty && 
@@ -182,7 +192,7 @@ namespace TalegenProjectNamiCacheLoader
                                             // double check we haven't processed this in another thread already.
                                             if (this.visitedLinks.All(visitedLink => !visitedLink.Equals(link, StringComparison.InvariantCultureIgnoreCase)))
                                             {
-                                                this.ProcessSite(link, currentDepth + 1);
+                                                this.ProcessSite(link, targetExtensions, currentDepth + 1);
                                             }
                                         });
                                 }
@@ -194,7 +204,7 @@ namespace TalegenProjectNamiCacheLoader
                                         // double check we haven't processed this in another recursion already.
                                         if (this.visitedLinks.All(visitedLink => !visitedLink.Equals(link, StringComparison.InvariantCultureIgnoreCase)))
                                         {
-                                            this.ProcessSite(link, currentDepth + 1);
+                                            this.ProcessSite(link, targetExtensions, currentDepth + 1);
                                         }
                                     }
                                 }
